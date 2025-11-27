@@ -12,3 +12,34 @@ You would plot a point at (68+20+25+5)/4 = 29.5
 The X-axis should be the date, the Y-axis should be the average pollution.
 '''
 
+#filename = input("Enter filename: ")
+
+filename = "leeds-centre-air-quality.csv"
+
+infile = open(filename, "r")
+outfile = open(filename + "_out.csv", "w")
+
+next(infile)
+
+for line in infile:
+    line = line.strip()
+    parts = line.split(",")
+
+    date = parts[0]
+    average = []
+
+    for date in parts[1:]:
+        if date != "":
+            average.append(float(date))
+
+    total = 0
+    for g in average:
+        total += g
+    average = total / len(average)
+
+
+    outfile.write(f"{date},{average:.2f}\n")
+
+
+infile.close()
+outfile.close()
