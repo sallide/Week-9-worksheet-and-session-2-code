@@ -1,0 +1,6 @@
+flask
+flask-whooshalchemy
+flask-wtf
+flask-babel
+coverage
+requests
