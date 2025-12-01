@@ -10,14 +10,18 @@ For example, for the row:
 You would plot a point at (68+20+25+5)/4 = 29.5
 
 The X-axis should be the date, the Y-axis should be the average pollution.
+
+Name: Saloni Pradhan
+Student ID: 201829493
 '''
 
-#filename = input("Enter filename: ")
+import matplotlib
+import pandas
 
-filename = "leeds-centre-air-quality.csv"
+filename = "/workspaces/Week-9-worksheet-and-session-2-code/portfollio/leeds-centre-air-quality.csv"
 
 infile = open(filename, "r")
-outfile = open(filename + "_out.csv", "w")
+outfile = open("/workspaces/Week-9-worksheet-and-session-2-code/portfollio/leeds-centre-air-quality_out.csv", "w")
 
 next(infile)
 
@@ -32,14 +36,16 @@ for line in infile:
         if date != "":
             average.append(float(date))
 
-    total = 0
-    for g in average:
-        total += g
-    average = total / len(average)
+    if average == 0:
+        total = 0
+        for g in average:
+            total += g
+        average = total / len(average)
 
 
-    outfile.write(f"{date},{average:.2f}\n")
-
+        outfile.write(f"{date},{average:.2f}\n")
+    else:
+        pass
 
 infile.close()
 outfile.close()
