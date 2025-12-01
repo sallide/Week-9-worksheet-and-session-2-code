@@ -15,15 +15,18 @@ Name: Saloni Pradhan
 Student ID: 201829493
 '''
 
-import matplotlib
-import pandas
+import matplotlib.pyplot as plt
+import pandas as pd
 
-filename = "/workspaces/Week-9-worksheet-and-session-2-code/portfollio/leeds-centre-air-quality.csv"
+filename = "leeds-centre-air-quality.csv"
+filename1 = "leeds-centre-air-quality_out.csv"
 
 infile = open(filename, "r")
-outfile = open("/workspaces/Week-9-worksheet-and-session-2-code/portfollio/leeds-centre-air-quality_out.csv", "w")
+outfile = open(filename1, "w")
 
 next(infile)
+
+outfile.write("date,average\n")
 
 for line in infile:
     line = line.strip()
@@ -32,11 +35,11 @@ for line in infile:
     date = parts[0]
     average = []
 
-    for date in parts[1:]:
-        if date != "":
-            average.append(float(date))
+    for i in parts[1:]:
+        if i != "":
+            average.append(float(i))
 
-    if average == 0:
+    if len(average) > 0:
         total = 0
         for g in average:
             total += g
@@ -46,6 +49,12 @@ for line in infile:
         outfile.write(f"{date},{average:.2f}\n")
     else:
         pass
+
+df = pd.read_csv(filename1) 
+df["date"] = pd.to_datetime(df["date"], dayfirst=True)
+df.plot(kind="line", x="date", y="average")
+plt.xlabel = ("Date")
+plt.ylabel = ("Avereage Pollution")
 
 infile.close()
 outfile.close()
