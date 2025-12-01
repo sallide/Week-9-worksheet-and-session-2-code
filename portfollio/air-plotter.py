@@ -56,5 +56,7 @@ df.plot(kind="line", x="date", y="average")
 plt.xlabel = ("Date")
 plt.ylabel = ("Avereage Pollution")
 
+plt.show()
+
 infile.close()
 outfile.close()
